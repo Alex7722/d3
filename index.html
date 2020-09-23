@@ -48,9 +48,10 @@ d3.json("data.json", function(error, graph) {
     .selectAll("g")
     .data(graph.nodes)
     .enter().append("g")
-    
+  node.append("circle")
+
   var circles = node.append("circle")
-      .attr("r", 5)
+      .attr("r", function(d) { return d.size; })
       .attr("fill", function(d) { return color(d.color); })
       .call(d3.drag()
           .on("start", dragstarted)
